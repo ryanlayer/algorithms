@@ -1,15 +1,17 @@
 import heapq
 
 def Dijkstra(G,s,w):
-    dist = [float('inf')] * len(G)
+    V = G[0]
+    E = G[1]
+    dist = [float('inf')] * len(V)
     dist[s] = 0
-    pred = [None] * len(G)
+    pred = [None] * len(V)
     Q = []
     heapq.heappush(Q,(0,s))
     
     while len(Q) > 0:
         d,x = heapq.heappop(Q)
-        for y in G[x]:
+        for y in E[x]:
             if dist[y] > dist[x] + w[(x,y)]:#(x,y) is tense
                 dist[y] = dist[x] + w[(x,y)]
                 pred[y] = x
@@ -18,7 +20,9 @@ def Dijkstra(G,s,w):
 
     return dist, pred
     
-G = [[1,2],[2,3],[1,4],[1,4],[2,3]]
+V = [0,1,2,3,4]
+E = [[1,2],[2,3],[1,4],[1,4],[2,3]]
+G = (V,E)
 
 w = { (0,1) : 1, (1,0) : 1,
       (0,2) : 3, (2,0) : 3,
