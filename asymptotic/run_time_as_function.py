@@ -20,7 +20,7 @@ def linear(n):
     return r
 
 
-fig = matplotlib.pyplot.figure(figsize=(4,4),dpi=300)
+fig = matplotlib.pyplot.figure(figsize=(4,3),dpi=300)
 ax = fig.add_subplot(1,1,1)
 
 ax.spines['top'].set_visible(False)
@@ -50,12 +50,12 @@ for func in [linear, square]:
 
     ax.plot(xp,p(xp))
 
-    eq = '{:.1e}'.format(float(f[0])) + 'n^2 +'\
-         ' {:.1e}'.format(float(f[1])) + 'n +' \
+    eq = '{:.1e}'.format(float(f[0])) + r'$n^2$ +'\
+         ' {:.1e}'.format(float(f[1])) + r'$n$ +' \
          ' {:.1e}'.format(float(f[2]))
          
 
-    ax.text(X[-1],Y[-1],eq, size=8)
+    ax.text(X[-1],Y[-1],eq, size=8, ha='right')
     
 
 matplotlib.pyplot.savefig('runtime.png', bbox_inches='tight')
