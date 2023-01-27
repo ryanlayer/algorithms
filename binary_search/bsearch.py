@@ -1,3 +1,5 @@
+import numpy as np
+
 def bsearch_recursive(lst, x):
     n = len(lst)
     if n == 0: return False
@@ -23,7 +25,7 @@ def bsearch_recursive(lst, x):
         else:
             return n/2 + bsearch_recursive(lst[midIndex:n], x)
 
-print(bsearch_recursive([1,2,3,4,5,6], 5))
+#print(bsearch_recursive([1,2,3,4,5,6], 5))
 
 def bsearch_while(lst, x):
     lo = -1
@@ -37,22 +39,35 @@ def bsearch_while(lst, x):
             hi = mid
     return hi
 
-print(bsearch_while([1,2,3,4,5,6], 5))
+#print(bsearch_while([1,2,3,4,5,6], 5))
 
 import random
 import time
 
-lst = random.sample(range(1,3000000000),100000)
+lst = random.sample(range(1,3000000000),1000000)
 lst.sort()
-x = lst[1]
+X = random.sample(range(1,3000000000),100)
 
-start = time.time()
-print(bsearch_recursive(lst, x))
-end = time.time()
-rec_time = end - start
+rec_times = []
+while_times = []
 
-start = time.time()
-print(bsearch_while(lst,x))
-end = time.time()
-while_time = end - start
-print(rec_time, while_time, rec_time/while_time)
+for x in X:
+    start = time.time()
+    h = bsearch_recursive(lst, x)
+    end = time.time()
+    rec_time = end - start
+
+    rec_times.append(rec_time)
+
+    start = time.time()
+    h = bsearch_while(lst,x)
+    end = time.time()
+    while_time = end - start
+
+    while_times.append(while_time)
+
+print(np.mean(rec_times))
+print(np.mean(while_times))
+print(np.mean(rec_times)/ np.mean(while_times))
+
+
