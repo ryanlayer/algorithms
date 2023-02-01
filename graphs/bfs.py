@@ -1,13 +1,13 @@
-def BFS(V):
-    state = ['new']*len(V)
+def BFS(E):
+    state = ['new']*len(E)
     Q = []
     Q.append(0)
     while len(Q) != 0:
         x = Q.pop(0)
         if state[x] == 'new':
             state[x] = 'old'
-            for y in V[x]:
+            for y in E[x]:
                 Q.append(y)
 
-V = [[1,2,3],[4],[5],[6],[5],[7],[5],[]]   
-BFS(V)
+E = [[1,2,3],[4],[5],[6],[5],[7],[5],[]]   
+BFS(E)
