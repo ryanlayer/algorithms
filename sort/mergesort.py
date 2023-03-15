@@ -20,4 +20,7 @@ def mergesort(L):
     B = mergesort(L[int(len(L)/2):])
     return merge(A, B)
 
-print(mergesort([4, 1, 6, 3, 2, 5]))
+if __name__ == '__main__':
+    A = [4, 5, 8, 9, 2 , 1, 3, 7, 6]
+    R = mergesort(A)
+    print(R)
